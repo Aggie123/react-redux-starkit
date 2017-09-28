@@ -1,0 +1,38 @@
+* {
+  box-sizing: border-box;
+}
+html{
+  font-size: 100px;
+}
+
+li {
+  list-style: none;
+}
+
+body, ul, li, img {
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  vertical-align: bottom;
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+}
+
+button, input, textarea, select {
+  outline: none;
+}
+
+button, a {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+body {
+  font-size: 0.16rem;
+  background-color: #eee;
+  font-family: sans-serif;
+}

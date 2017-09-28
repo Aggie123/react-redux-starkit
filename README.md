@@ -81,19 +81,19 @@ They will not be included in the production build so you can use them for things
 
 ##How to build test environment to test API
 
-1. Update hosts : add lines `127.0.0.1 test.mijia.mi.srv` to hosts.
+1. Update hosts : add lines `127.0.0.1 a.com` to hosts.
    scripts: vim /etc/hosts
 
 2. Update nginx conf: copy below configration to nginx.conf.
    scripts: vim /usr/local/etc/nginx/nginx.conf
 ```
-  upstream test.mijia.mi.srv {
+  upstream a.com {
       server 127.0.0.1:4008;
       keepalive 64;
   }
   server {
           listen       80;
-          server_name  test.mijia.mi.srv;
+          server_name  a.com;
           error_log /usr/local/etc/nginx/logs/error.log;
           location / {
               proxy_set_header   X-Real-IP        $remote_addr;
@@ -102,12 +102,12 @@ They will not be included in the production build so you can use them for things
               proxy_set_header   X-NginX-Proxy    true;
               proxy_set_header   Connection "";
               proxy_http_version 1.1;
-              proxy_pass         http://test.mijia.mi.srv;
+              proxy_pass         http://a.com;
           }
           location /src {
                   proxy_set_header   X-Real-IP        $remote_addr;
                   proxy_set_header   X-Forwarded-For  $proxy_add_x_forwarded_for;
-                  proxy_set_header   Host             mijia.mi.srv;
+                  proxy_set_header   Host             a.com;
                   proxy_set_header   X-NginX-Proxy    true;
                   proxy_set_header   Connection "";
                   proxy_http_version 1.1;
@@ -115,4 +115,4 @@ They will not be included in the production build so you can use them for things
           }
       }
 ```
-3. Now you can visit the website via: http://test.mijia.mi.srv:4008
+3. Now you can visit the website via: http://a.com:4008
